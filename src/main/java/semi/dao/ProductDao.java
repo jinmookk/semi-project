@@ -11,10 +11,7 @@ import java.util.List;
 
 import semi.vo.Product;
 import semi.vo.ProductCategory;
-
 import semi.vo.ProductItem;
-
-import semi.vo.ProductDetailImage;
 
 
 
@@ -141,12 +138,6 @@ public class ProductDao {
 		
 		return productItemList;
 	}
-
-	private static ProductDao self = new ProductDao();
-	private ProductDao() {}
-	public static ProductDao getInstance() {
-		return self;
-	}
 	
 	public List<Product> getProductListBycategory(int begin, int end, String category, String orderBy) throws SQLException {
 		String sql = "SELECT PRODUCT_NO, CATEGORY_NO, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_DISCOUNT_PRICE, \n"
@@ -194,7 +185,7 @@ public class ProductDao {
 			productCategory.setNo(rs.getInt("CATEGORY_NO"));
 			productCategory.setName(rs.getString("CATEGORY_NAME"));
 			
-			product.setCategory(productCategory);
+			product.setProductCategory(productCategory);
 			
 			products.add(product);
 		}
